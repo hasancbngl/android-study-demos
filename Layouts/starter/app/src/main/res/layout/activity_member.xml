@@ -25,8 +25,7 @@
 
         <TextView
             android:id="@+id/memberName"
-            style="@style/member_info"
-            android:layout_width="wrap_content" />
+            style="@style/member_info" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,8 +39,7 @@
 
         <TextView
             android:id="@+id/memberLogin"
-            style="@style/member_info"
-            android:layout_width="wrap_content" />
+            style="@style/member_info" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,13 +49,38 @@
 
         <TextView
             style="@style/member_info"
-            android:text="@string/label_name" />
+            android:text="@string/label_email" />
 
         <TextView
-            android:id="@+id/memberName"
-            style="@style/member_info"
-            android:layout_width="wrap_content" />
+            android:id="@+id/memberEmail"
+            style="@style/member_info" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <TextView
+            style="@style/member_info"
+            android:text="@string/label_company" />
+
+        <TextView
+            android:id="@+id/memberCompany"
+            style="@style/member_info" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/member_info"
+            android:text="@string/label_type" />
+
+        <TextView
+            android:id="@+id/memberType"
+            style="@style/member_info" />
+    </LinearLayout>
 </LinearLayout>
