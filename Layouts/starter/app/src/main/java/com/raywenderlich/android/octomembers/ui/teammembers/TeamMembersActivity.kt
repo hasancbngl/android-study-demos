@@ -31,6 +31,7 @@
 package com.raywenderlich.android.octomembers.ui.teammembers
 
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
@@ -45,67 +46,85 @@ import kotlinx.android.synthetic.main.activity_team_members.*
 
 class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
 
-  lateinit var presenter: TeamMembersContract.Presenter
-  lateinit var adapter: TeamMemberAdapter
+    lateinit var presenter: TeamMembersContract.Presenter
+    lateinit var adapter: TeamMemberAdapter
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_team_members)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_team_members)
 
-    setupPresenter()
-    setupEditText()
-    setupShowMembersButton()
-    setupRecyclerView()
-  }
-
-  private fun setupPresenter() {
-    presenter = TeamMembersPresenter(RemoteRepository(), this)
-  }
-
-  private fun setupEditText() {
-    teamName.setSelection(teamName.text.length)
-    teamName.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
-        showMembers.performClick()
-        return@OnEditorActionListener true
-      }
-      false
-    })
-  }
-
-  private fun setupShowMembersButton() {
-    showMembers.setOnClickListener {
-      val teamNameValue = teamName.text.toString()
-      if (teamNameValue.isNotEmpty()) {
-        presenter.retrieveAllMembers(teamNameValue)
-      } else {
-        showTeamNameEmptyError()
-      }
+        setupPresenter()
+        setupEditText()
+        setupShowMembersButton()
+        setupRecyclerView()
     }
-  }
 
-  private fun setupRecyclerView() {
-    teamMembersList.layoutManager = LinearLayoutManager(this)
-    adapter = TeamMemberAdapter(listOf())
-    teamMembersList.adapter = adapter
-  }
+    private fun setupPresenter() {
+        presenter = TeamMembersPresenter(RemoteRepository(), this)
+    }
 
-  private fun showTeamNameEmptyError() {
-    Toast.makeText(this, getString(R.string.error_team_name_empty), Toast.LENGTH_SHORT).show()
-  }
+    private fun setupEditText() {
+        teamName.setSelection(teamName.text.length)
+        teamName.setOnEditorActionListener(TextView.OnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                showMembers.performClick()
+                return@OnEditorActionListener true
+            }
+            false
+        })
+    }
 
-  override fun showMembers(members: List<Member>) {
-    teamMembersList.hideKeyboard()
-    adapter.members = members
-    adapter.notifyDataSetChanged()
-  }
+    private fun setupShowMembersButton() {
+        showMembers.setOnClickListener {
+            val teamNameValue = teamName.text.toString()
+            if (teamNameValue.isNotEmpty()) {
+                teamMembersList.hideKeyboard()
+                presenter.retrieveAllMembers(teamNameValue)
+            } else {
+                showTeamNameEmptyError()
+            }
+        }
+    }
 
-  override fun showErrorRetrievingMembers() {
-    Toast.makeText(this, getString(R.string.error_retrieving_team), Toast.LENGTH_SHORT).show()
-  }
+    private fun setupRecyclerView() {
+        teamMembersList.layoutManager = LinearLayoutManager(this)
+        adapter = TeamMemberAdapter(listOf())
+        teamMembersList.adapter = adapter
+    }
 
-  override fun clearMembers() {
-    adapter.members = listOf()
-    adapter.notifyDataSetChanged()
-  }
+    private fun showTeamNameEmptyError() {
+        Toast.makeText(this, getString(R.string.error_team_name_empty), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showMembers(members: List<Member>) {
+        adapter.members = members
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun showErrorRetrievingMembers() {
+        Toast.makeText(this, getString(R.string.error_retrieving_team), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun clearMembers() {
+        adapter.members = listOf()
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun showLoading() {
+        loadingIndicator.visibility = View.VISIBLE
+        teamMembersList.visibility = View.INVISIBLE
+    }
+
+    override fun hideLoading() {
+        loadingIndicator.visibility = View.GONE
+        teamMembersList.visibility = View.VISIBLE
+    }
+
+    override fun enableInput() {
+        showMembers.isEnabled = true
+    }
+
+    override fun disableInput() {
+        showMembers.isEnabled = false
+    }
 }

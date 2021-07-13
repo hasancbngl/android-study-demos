@@ -39,25 +39,39 @@ import retrofit2.Response
 
 class TeamMembersPresenter(val repository: Repository, val view: TeamMembersContract.View) : TeamMembersContract.Presenter {
 
-  override fun retrieveAllMembers(teamName: String) {
-    repository.retrieveTeamMembers(teamName, object : Callback<List<Member>> {
-      override fun onResponse(call: Call<List<Member>>?, response: Response<List<Member>>?) {
-        val members = response?.body()
-        if (members != null) {
-          view.showMembers(members)
-        } else {
-          clearViewMembersAndShowError()
-        }
-      }
+    override fun retrieveAllMembers(teamName: String) {
+        showViewLoadingState()
+        repository.retrieveTeamMembers(teamName, object : Callback<List<Member>> {
+            override fun onResponse(call: Call<List<Member>>?, response: Response<List<Member>>?) {
+                val members = response?.body()
+                if (members != null) {
+                    showMembersInView(members)
+                } else {
+                    clearViewMembersAndShowError()
+                }
+            }
 
-      override fun onFailure(call: Call<List<Member>>?, t: Throwable?) {
-        clearViewMembersAndShowError()
-      }
-    })
-  }
+            override fun onFailure(call: Call<List<Member>>?, t: Throwable?) {
+                clearViewMembersAndShowError()
+            }
+        })
+    }
 
-  private fun clearViewMembersAndShowError() {
-    view.clearMembers()
-    view.showErrorRetrievingMembers()
-  }
+    private fun showViewLoadingState() {
+        view.showLoading()
+        view.disableInput()
+    }
+
+    private fun showMembersInView(members: List<Member>) {
+        view.showMembers(members)
+        view.hideLoading()
+        view.enableInput()
+    }
+
+    private fun clearViewMembersAndShowError() {
+        view.clearMembers()
+        view.showErrorRetrievingMembers()
+        view.hideLoading()
+        view.enableInput()
+    }
 }

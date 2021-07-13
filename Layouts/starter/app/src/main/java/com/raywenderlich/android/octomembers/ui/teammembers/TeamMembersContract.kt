@@ -35,13 +35,17 @@ import com.raywenderlich.android.octomembers.model.Member
 
 interface TeamMembersContract {
 
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-  }
+    interface View {
+        fun showMembers(members: List<Member>)
+        fun showErrorRetrievingMembers()
+        fun clearMembers()
+        fun showLoading()
+        fun hideLoading()
+        fun enableInput()
+        fun disableInput()
+    }
 
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
-  }
+    interface Presenter {
+        fun retrieveAllMembers(teamName: String)
+    }
 }
