@@ -12,7 +12,7 @@ android {
     }
     defaultConfig {
         applicationId "com.raywenderlich.android.octomembers"
-        minSdkVersion 26
+        minSdkVersion 20
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

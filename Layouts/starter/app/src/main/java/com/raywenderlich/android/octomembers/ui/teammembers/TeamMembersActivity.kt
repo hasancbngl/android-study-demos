@@ -38,9 +38,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raywenderlich.android.octomembers.R
-import com.raywenderlich.android.octomembers.ui.extensions.hideKeyboard
 import com.raywenderlich.android.octomembers.model.Member
 import com.raywenderlich.android.octomembers.repository.remote.RemoteRepository
+import com.raywenderlich.android.octomembers.ui.extensions.hideKeyboard
 import kotlinx.android.synthetic.main.activity_team_members.*
 
 
@@ -99,6 +99,7 @@ class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
     override fun showMembers(members: List<Member>) {
         adapter.members = members
         adapter.notifyDataSetChanged()
+        teamMembersList.visibility = View.VISIBLE
     }
 
     override fun showErrorRetrievingMembers() {
@@ -112,12 +113,10 @@ class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
 
     override fun showLoading() {
         loadingIndicator.visibility = View.VISIBLE
-        teamMembersList.visibility = View.INVISIBLE
     }
 
     override fun hideLoading() {
         loadingIndicator.visibility = View.GONE
-        teamMembersList.visibility = View.VISIBLE
     }
 
     override fun enableInput() {
@@ -126,5 +125,18 @@ class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
 
     override fun disableInput() {
         showMembers.isEnabled = false
+    }
+
+    override fun showEmptyState() {
+        emptyState.text = getString(R.string.noMemberfound, teamName.text.toString())
+        emptyState.visibility = View.VISIBLE
+    }
+
+    override fun hideEmptyState() {
+        emptyState.visibility = View.INVISIBLE
+    }
+
+    override fun hideMembers() {
+        teamMembersList.visibility = View.INVISIBLE
     }
 }

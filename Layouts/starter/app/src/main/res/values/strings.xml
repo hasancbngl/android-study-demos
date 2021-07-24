@@ -12,4 +12,5 @@
     <string name="label_company">company:</string>
     <string name="label_email">email:</string>
     <string name="label_type">type:</string>
+    <string name="noMemberfound">No member Found for %1$s.</string>
 </resources>
