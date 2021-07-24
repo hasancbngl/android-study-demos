@@ -29,8 +29,8 @@
             android:layout_weight="1"
             android:maxLines="3"
             android:padding="@dimen/padding_standart"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="@dimen/detail_name_text" />
     </LinearLayout>
 

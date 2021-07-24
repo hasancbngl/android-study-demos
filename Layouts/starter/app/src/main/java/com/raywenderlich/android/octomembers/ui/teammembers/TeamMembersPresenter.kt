@@ -37,7 +37,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class TeamMembersPresenter(val repository: Repository, val view: TeamMembersContract.View) : TeamMembersContract.Presenter {
+class TeamMembersPresenter(val repository: Repository, val view: TeamMembersContract.View) :
+    TeamMembersContract.Presenter {
 
     override fun retrieveAllMembers(teamName: String) {
         showViewLoadingState()
