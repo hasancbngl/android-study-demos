@@ -38,6 +38,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.raywenderlich.android.octomembers.R
 import com.raywenderlich.android.octomembers.model.Member
 import com.raywenderlich.android.octomembers.repository.remote.RemoteRepository
+import com.raywenderlich.android.octomembers.ui.extensions.hideIfEmpty
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_member.*
 
@@ -77,12 +78,16 @@ class MemberActivity : AppCompatActivity(), MemberContract.View {
 
     private fun memberLoginFromIntent() = intent.getStringExtra(EXTRA_MEMBER_LOGIN)
 
+    private fun hideIfStringIsEmpty(member: Member) {
+        memberName.hideIfEmpty(member.name, memberName)
+        memberCompanyContainer.hideIfEmpty(member.company, memberCompany)
+        memberEmailContainer.hideIfEmpty(member.email, memberEmail)
+        memberLoginContainer.hideIfEmpty(member.login, memberLogin)
+        memberTypeContainer.hideIfEmpty(member.type, memberType)
+    }
+
     override fun showMember(member: Member) {
-        memberName.text = member.name
-        memberLogin.text = member.login
-        memberCompany.text = member.company
-        memberType.text = member.type
-        memberEmail.text = member.email
+        hideIfStringIsEmpty(member)
         Picasso.get().load(member.avatarUrl).into(memberAvatar)
     }
 

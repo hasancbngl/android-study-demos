@@ -33,9 +33,16 @@ package com.raywenderlich.android.octomembers.ui.extensions
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 
 
 fun View.hideKeyboard() {
     val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+fun View.hideIfEmpty(text: String?, textView: TextView) {
+    if (text.isNullOrEmpty() || text == "") {
+        visibility = View.GONE
+    } else textView.text = text
 }
