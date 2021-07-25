@@ -41,8 +41,9 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
-fun View.hideIfEmpty(text: String?, textView: TextView) {
-    if (text.isNullOrEmpty() || text == "") {
-        visibility = View.GONE
+fun TextView.hideIfEmpty(text: String?, textView: TextView, label: TextView) {
+    if (text.isNullOrEmpty()) {
+        textView.visibility = View.GONE
+        label.visibility = View.GONE
     } else textView.text = text
 }

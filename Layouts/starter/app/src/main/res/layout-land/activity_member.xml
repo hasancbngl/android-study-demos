@@ -23,8 +23,8 @@
             android:id="@+id/memberAvatar"
             android:layout_width="@dimen/detail_avatar_size"
             android:layout_height="@dimen/detail_avatar_size"
-            android:padding="@dimen/padding_standart"
             android:contentDescription="@string/todo"
+            android:padding="@dimen/padding_standart"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView

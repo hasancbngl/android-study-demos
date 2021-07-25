@@ -7,108 +7,138 @@
     android:layout_height="match_parent"
     tools:context="com.raywenderlich.android.octomembers.ui.member.MemberActivity">
 
-    <LinearLayout
-        android:id="@+id/avatarContainer"
-        android:layout_width="0dp"
+    <View
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorAccent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/memberInfoContainer"
+        app:layout_constraintBottom_toTopOf="@id/horizantalGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/memberAvatar"
-            android:layout_width="@dimen/detail_avatar_size"
-            android:layout_height="@dimen/detail_avatar_size"
-            android:layout_marginStart="@dimen/padding_standart"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher_background" />
-
-        <TextView
-            android:id="@+id/memberName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:maxLines="3"
-            android:padding="@dimen/padding_standart"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/detail_name_text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/memberInfoContainer"
-        android:layout_width="0dp"
+    <View
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarContainer">
+        app:layout_constraintTop_toBottomOf="@id/horizantalGuideline" />
 
-        <LinearLayout
-            android:id="@+id/memberLoginContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/memberAvatar"
+        android:layout_width="@dimen/detail_avatar_size"
+        android:layout_height="@dimen/detail_avatar_size"
+        android:layout_marginStart="@dimen/padding_standart"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@id/horizantalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                style="@style/member_label"
-                android:text="@string/label_login" />
+    <TextView
+        android:id="@+id/memberName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:padding="@dimen/padding_standart"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/detail_name_text"
+        app:layout_constraintBottom_toTopOf="@id/horizantalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/memberLogin"
-                style="@style/member_info" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/labelLogin"
+        style="@style/member_label"
+        android:text="@string/label_login"
+        app:layout_constraintBottom_toTopOf="@id/labelCompany"
+        app:layout_constraintEnd_toStartOf="@id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/horizantalGuideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/memberEmailContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/labelCompany"
+        style="@style/member_label"
+        android:text="@string/label_company"
+        app:layout_constraintBottom_toTopOf="@id/labelEmail"
+        app:layout_constraintEnd_toStartOf="@id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelLogin"
+        tools:visibility="visible" />
 
-            <TextView
-                style="@style/member_label"
-                android:text="@string/label_email" />
+    <TextView
+        android:id="@+id/labelEmail"
+        style="@style/member_label"
+        android:text="@string/label_email"
+        app:layout_constraintBottom_toTopOf="@id/labelType"
+        app:layout_constraintEnd_toStartOf="@id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelCompany"
+        tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/memberEmail"
-                style="@style/member_info" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/labelType"
+        style="@style/member_label"
+        android:text="@string/label_type"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelEmail"
+        tools:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/memberCompanyContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/memberLogin"
+        style="@style/member_info"
+        app:layout_constraintBottom_toTopOf="@id/memberCompany"
+        app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/horizantalGuideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible" />
 
-            <TextView
-                style="@style/member_label"
-                android:text="@string/label_company" />
+    <TextView
+        android:id="@+id/memberCompany"
+        style="@style/member_info"
+        app:layout_constraintBottom_toTopOf="@id/memberEmail"
+        app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/memberLogin"
+        tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/memberCompany"
-                style="@style/member_info" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/memberEmail"
+        style="@style/member_info"
+        app:layout_constraintBottom_toTopOf="@id/memberType"
+        app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/memberCompany"
+        tools:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/memberTypeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <TextView
+        android:id="@+id/memberType"
+        style="@style/member_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/verticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/memberEmail"
+        tools:visibility="visible" />
 
-            <TextView
-                style="@style/member_label"
-                android:text="@string/label_type" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-            <TextView
-                android:id="@+id/memberType"
-                style="@style/member_info" />
-        </LinearLayout>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/infoVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizantalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

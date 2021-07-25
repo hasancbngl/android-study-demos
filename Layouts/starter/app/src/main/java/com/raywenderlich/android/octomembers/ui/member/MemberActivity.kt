@@ -79,11 +79,11 @@ class MemberActivity : AppCompatActivity(), MemberContract.View {
     private fun memberLoginFromIntent() = intent.getStringExtra(EXTRA_MEMBER_LOGIN)
 
     private fun hideIfStringIsEmpty(member: Member) {
-        memberName.hideIfEmpty(member.name, memberName)
-        memberCompanyContainer.hideIfEmpty(member.company, memberCompany)
-        memberEmailContainer.hideIfEmpty(member.email, memberEmail)
-        memberLoginContainer.hideIfEmpty(member.login, memberLogin)
-        memberTypeContainer.hideIfEmpty(member.type, memberType)
+        memberName.hideIfEmpty(member.name, memberName, memberName)
+        memberCompany.hideIfEmpty(member.company, memberCompany, labelCompany)
+        memberEmail.hideIfEmpty(member.email, memberEmail, labelEmail)
+        memberLogin.hideIfEmpty(member.login, memberLogin, labelLogin)
+        memberType.hideIfEmpty(member.type, memberType, labelType)
     }
 
     override fun showMember(member: Member) {
