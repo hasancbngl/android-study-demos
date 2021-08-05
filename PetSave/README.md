@@ -2,7 +2,7 @@
 
 ## SUMMARY
 
-The starter template of this project are downloaded from [raywenderlich.com](https://raywenderlich.com) as part of my stuyding the 
+The starter template of this project are downloaded from [raywenderlich.com](https://raywenderlich.com) as part of my studying the 
 `The Real World Android By Tutorials ` book. 
 
 This project is a barebones Android Studio project that implements the code style and formatting standards for 
