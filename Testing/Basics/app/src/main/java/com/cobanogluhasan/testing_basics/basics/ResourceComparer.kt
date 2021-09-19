@@ -1,4 +1,4 @@
-package com.cobanogluhasan.testing_basics
+package com.cobanogluhasan.testing_basics.basics
 
 import android.content.Context
 

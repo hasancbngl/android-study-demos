@@ -1,5 +1,6 @@
-package com.cobanogluhasan.testing_basics
+package com.cobanogluhasan.testing_basics.registrationutil
 
+import com.cobanogluhasan.testing_basics.basics.RegistrationUtil
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -7,7 +8,7 @@ class RegistrationUtilTest {
 
     @Test
     fun `empty username return false`() {
-        val password = ""
+        val password = "123"
         val result = RegistrationUtil.validateRegistrationInput(
             "",
             password,
@@ -50,7 +51,7 @@ class RegistrationUtilTest {
     }
 
     @Test
-    fun `password repeated incorrecly`() {
+    fun `password repeated incorrectly`() {
         val result = RegistrationUtil.validateRegistrationInput(
             "abscn",
             "asd12",

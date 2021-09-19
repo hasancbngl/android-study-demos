@@ -1,7 +1,9 @@
-package com.cobanogluhasan.testing_basics
+package com.cobanogluhasan.testing_basics.resourcecomparer
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import com.cobanogluhasan.testing_basics.R
+import com.cobanogluhasan.testing_basics.basics.ResourceComparer
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
