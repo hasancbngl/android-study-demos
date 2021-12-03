@@ -1,3 +1,0 @@
-id=water
-title=Water
-Put glass under tap. Open tap. Close tap. Drink.
